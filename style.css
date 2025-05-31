@@ -1,0 +1,125 @@
+body{
+     padding: 0;
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#inner-frame{
+    display: flex;
+    flex-direction: column;
+    border: 5px solid rgb(187, 187, 187);
+    border-radius: 15px;
+    background-color: rgb(179, 212, 212);
+    box-shadow: 0 0 20px rgba(0, 0, 255, 0.2);
+    width: 80%;
+    height: 50%;
+    gap: 16px;
+    padding: 20px;
+}
+
+#screen-wrapper{
+    display: flex;
+            flex:1;
+
+}
+#screen{
+    border-radius: 15px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 255, 0.2);
+    width: 100%;
+    font-size:70px;
+    font-weight: bold;
+    padding: 30px;
+    margin: 0 auto;
+    text-align: right;
+}
+#buttons-wrapper{
+    display: flex;
+    gap: 8px;
+        flex:2;
+
+}
+#operator-buttons{
+
+    gap: 8px;
+    justify-content: space-between;
+        width: 100%;
+        flex:1;
+
+}
+
+#numbers-buttons{
+    display: flex;
+    flex-direction: column;
+        flex:1;
+
+    gap: 8px;
+}
+
+#row4,
+#row3,
+#row2,
+#row1{
+    display: flex;
+        flex:1;
+
+    gap: 8px;
+}
+
+#operator-buttons{
+    display: flex;
+    flex-direction: column;
+        flex:1;
+
+
+}
+#no0-button,
+#no1-button,
+#no2-button,
+#no3-button,
+#no4-button,
+#no5-button,
+#no6-button,
+#no7-button,
+#no8-button,
+#no9-button{
+
+    border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 255, 0.2);
+         font-size: 24px;
+    font-weight: bold;
+        flex:1;
+
+
+}
+
+#plus-button,
+#minus-button,
+#multiply-button,
+#divide-button,
+#equals-button{
+
+    border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 255, 0.2);
+         font-size: 24px;
+    font-weight: bold;
+        flex:1;
+
+
+}
+
+
+
+
+
+
+
+
+
