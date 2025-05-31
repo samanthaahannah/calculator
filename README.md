@@ -1,1 +1,1 @@
-# calculator
+This is a project involving a working calculator in Javascript
