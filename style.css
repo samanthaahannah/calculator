@@ -3,6 +3,7 @@ body{
     margin: 0;
     font-size: 24px;
     font-weight: bold;
+    font-family: "Roboto", sans-serif;
 }
 
 #container{
@@ -28,6 +29,10 @@ body{
 #screen-wrapper{
     display: flex;
     flex:1;
+    vertical-align: middle;
+    align-items: center;
+    vertical-align: middle;
+
 }
 
 #screen{
@@ -36,11 +41,14 @@ body{
     box-shadow: inset -4px 10px 10px 10px rgba(25, 25, 41, 0.2), 0 0 30px 5px rgba(0, 0, 255, 0.2);
     background-color: rgb(255, 255, 255);
     width: 100%;
+    height: 200px;
     font-size:70px;
     font-weight: bold;
-    padding: 30px;
     margin: 0 auto;
     text-align: right;
+    align-items: center;
+    vertical-align: middle;
+    padding-right: 20px;
 }
 
 #buttons-wrapper{
@@ -79,7 +87,9 @@ body{
 #no6-button,
 #no7-button,
 #no8-button,
-#no9-button{
+#no9-button,
+#c-button,
+#d-button{
     border-radius: 15px;
     box-shadow: inset 3px -3px 5px 5px rgba(0, 0, 255, 0.2),0 0 20px 5px rgba(0, 0, 255, 0.2);
     background-color: rgb(203, 203, 212);
@@ -92,7 +102,8 @@ body{
 #minus-button,
 #multiply-button,
 #divide-button,
-#equals-button{
+#equals-button,
+#decimal-button{
     border-radius: 15px;
     font-size: 24px;
     font-weight: bold;
