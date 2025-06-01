@@ -1,5 +1,5 @@
 body{
-     padding: 0;
+    padding: 0;
     margin: 0;
     font-size: 24px;
     font-weight: bold;
@@ -15,24 +15,26 @@ body{
 #inner-frame{
     display: flex;
     flex-direction: column;
-    border: 5px solid rgb(187, 187, 187);
+    border: 5px solid rgba(5, 5, 126, 0.5);
     border-radius: 15px;
     background-color: rgb(179, 212, 212);
-    box-shadow: 0 0 20px rgba(0, 0, 255, 0.2);
-    width: 80%;
-    height: 50%;
+    box-shadow: inset 3px -3px 20px 5px rgba(0, 0, 255, 0.2), 0 0 20px 5px rgba(66, 66, 66, 0.5);
+    width: 600px;
+    height: 70%;
     gap: 16px;
     padding: 20px;
 }
 
 #screen-wrapper{
     display: flex;
-            flex:1;
-
+    flex:1;
 }
+
 #screen{
     border-radius: 15px;
-    box-shadow: inset 0 0 20px rgba(0, 0, 255, 0.2);
+    border: 5px solid rgba(21, 21, 53, 0.5);
+    box-shadow: inset -4px 10px 10px 10px rgba(25, 25, 41, 0.2), 0 0 30px 5px rgba(0, 0, 255, 0.2);
+    background-color: rgb(255, 255, 255);
     width: 100%;
     font-size:70px;
     font-weight: bold;
@@ -40,46 +42,34 @@ body{
     margin: 0 auto;
     text-align: right;
 }
+
 #buttons-wrapper{
     display: flex;
     gap: 8px;
-        flex:2;
-
+    flex:2;
 }
-#operator-buttons{
 
+#operator-buttons{
     gap: 8px;
     justify-content: space-between;
-        width: 100%;
-        flex:1;
-
+    width: 100%;
+    flex:1;
 }
 
 #numbers-buttons{
     display: flex;
-    flex-direction: column;
-        flex:1;
-
+    flex-wrap: wrap;
+    flex:3;
     gap: 8px;
-}
-
-#row4,
-#row3,
-#row2,
-#row1{
-    display: flex;
-        flex:1;
-
-    gap: 8px;
+    justify-content: center;
 }
 
 #operator-buttons{
     display: flex;
     flex-direction: column;
-        flex:1;
-
-
+    flex:1;
 }
+
 #no0-button,
 #no1-button,
 #no2-button,
@@ -90,14 +80,12 @@ body{
 #no7-button,
 #no8-button,
 #no9-button{
-
     border-radius: 15px;
-        box-shadow: 0 0 20px rgba(0, 0, 255, 0.2);
-         font-size: 24px;
+    box-shadow: inset 3px -3px 5px 5px rgba(0, 0, 255, 0.2),0 0 20px 5px rgba(0, 0, 255, 0.2);
+    background-color: rgb(203, 203, 212);
+    font-size: 24px;
     font-weight: bold;
-        flex:1;
-
-
+    width: 140px;
 }
 
 #plus-button,
@@ -105,14 +93,12 @@ body{
 #multiply-button,
 #divide-button,
 #equals-button{
-
     border-radius: 15px;
-        box-shadow: 0 0 20px rgba(0, 0, 255, 0.2);
-         font-size: 24px;
+    font-size: 24px;
     font-weight: bold;
-        flex:1;
-
-
+    flex:1;
+    box-shadow: inset 3px -3px 5px 5px rgba(0, 0, 255, 0.2),0 0 20px rgba(0, 0, 255, 0.2);
+    background-color: rgb(203, 203, 212);
 }
 
 
