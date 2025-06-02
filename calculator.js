@@ -126,128 +126,68 @@ numberButtons.appendChild(decimalButton);
 
 function operate(num1, num2, operand){
     let sum = 0;
+    let number1 = 0;
+    let number2 = 0;
+    number1 = parseFloat(num1);
+    number2 = parseFloat(num2);
     switch (operand){
         case '-':
-            sum = num1 - num2
+            sum = number1 - number2
             return console.log(sum);
         case '+':
-            sum = num1 + num2
+            sum = number1 + number2
             return console.log(sum);
         case '/': 
-            sum = num1 / num2
+            sum = number1 / number2
             return console.log(sum);
         default:
-            sum = num1 * num2
+            sum = number1 * number2
             return console.log(sum);
             
     }
 }
 
-/*Constructs the first number (string) from button presses in getDigits1 in calculation*/
-function makeNumber1(numString){
-    let newString = '';
-
-    newString += `${numString}`;
-
-    getDigits1(newString);
-};
-
-/*Constructs the second number (adds to string) from button presses in getDigits1 in calculation*/
-function makeNumber2(numString){
-    let newString = '';
-
-    newString += `${numString}`;
-    getDigits2(newString);
-};
-
 /*Gets button presses & passes string for first number in calculation*/
-function getDigits1(numString = ''){
-        let used1 = false;
-        let numberString = '';
+function getDigits(){
+    let x = '';
         let numbersButtons = document.getElementById('numbers-buttons');
         let decButton = document.getElementById('decimal-button');
+
         numbersButtons.addEventListener('click', (event) => {
         let target = event.target;
         switch(target.id){
             case 'no1-button':
-                numberString = `${numString}1`;
-                makeNumber1(numberString);
-                num1 = parseFloat(numberString);
-                console.log(num1);
-                getOperators();
+                x = `1`;
+                if (isFirst == true){
+                num1.push(x);
+                numStr1 = num1.join('');
+                console.log(numStr1);
                 return num1;
-            case 'no2-button':
-                numberString = `2`;
-                makeNumber1(numberString);
-                getOperators();
-                console.log(numberString);
-                num1 = parseFloat(numberString);
-                return num1;
-            case 'no3-button':
-                numberString = `3`;
-                makeNumber1(numberString);
-                getOperators();
-                console.log(numberString);
-                num1 = parseFloat(numberString);
-                return num1;
-            case 'no4-button':
-                numberString = `4`;
-                makeNumber1(numberString);
-                getOperators();
-                console.log(numberString);
-                num1 = parseFloat(numberString);
-                return num1;
-                break;
-            case 'no5-button':
-                numberString = `5`;
-                makeNumber1(numberString);
-                getOperators();
-                console.log(numberString);
-                num1 = parseFloat(numberString);
-                return num1;
-            case 'no6-button':
-                numberString = `6`;
-                makeNumber1(numberString);
-                getOperators();
-                console.log(numberString);
-                num1 = parseFloat(numberString);
-                return num1;
-            case 'no7-button':
-                numberString = `7`;
-                makeNumber1(numberString);
-                getOperators();
-                console.log(numberString);
-                num1 = parseFloat(numberString);
-                return num1;
-            case 'no8-button':
-                numberString = `8`;
-                makeNumber1(numberString);
-                getOperators();
-                console.log(numberString);
-                num1 = parseFloat(numberString);
-                return num1;
-            case 'no9-button':
-                numberString = `9`;
-                makeNumber1(numberString);
-                getOperators();
-                console.log(numberString);
-                num1 = parseFloat(numberString);
-                return num1;
-            case 'no0-button':
-                numberString = `0`;
-                makeNumber1(numberString);
-                getOperators();
-                console.log(numberString);
-                num1 = parseFloat(numberString);
-                return num1;
+
+                }else if(isFirst == false){
+                num2.push(x);
+                numStr2 = num2.join('');
+                console.log(numStr2);
+                return num2;
+
+                }
             case 'decimal-button':
-                if(used1 == false){
-                numberString = `${numString}.`;
-                makeNumber1(numberString);
-                
-                console.log(numberString);
-                used1 = true;
-                break;
+                if(used == false && isFirst == true){
+                    x = '.';
+                    num1.push(x);
+                    numStr1 = num1.join('');
+                    console.log(numStr1);                
+                    decButton.disabled = true;
+                    used = true;
+                return num1;
+                }else if (used == false && isFirst == false){
+                    x = '.';
+                    num2.push(x);
+                    numStr2 = num2.join('');
+                    console.log(numStr2);                
+                    decButton.disabled = true;
+                    used = true;
+                return num2;
                 }
                 break;
              case 'c-button':
@@ -257,94 +197,12 @@ function getDigits1(numString = ''){
     })
 }
 
-/*Gets button presses for second number in calculation & adds to string*/
-function getDigits2(numString = ''){
-    let used2 = false;
-    let toNum = 0;
 
-        let numberString = '';
-        let numbersButtons = document.getElementById('numbers-buttons');
-        let decButton = document.getElementById('decimal-button');
-        decButton.disabled = false;
-        numbersButtons.addEventListener('click', (event) => {
-        let target = event.target;
-        switch(target.id){
-            case 'no1-button':
-                numberString = `${numString}1`;
-                makeNumber2(numberString);
-                num2 = parseFloat(numberString);
-                console.log(num2);
-                return num2;
-            case 'no2-button':
-                numberString = `2`;
-                makeNumber2(numberString);
-                console.log(numberString);
-                num2 = parseFloat(numberString);
-                return num2;
-            case 'no3-button':
-                numberString = `3`;
-                makeNumber2(numberString);
-                console.log(numberString);
-                num2 = parseFloat(numberString);
-                return num2;
-            case 'no4-button':
-                numberString = `4`;
-                makeNumber2(numberString);
-                console.log(numberString);
-                num2 = parseFloat(numberString);
-                return num2;
-            case 'no5-button':
-                numberString = `5`;
-                makeNumber2(numberString);
-                console.log(numberString);
-                num2 = parseFloat(numberString);
-                return num2;
-            case 'no6-button':
-                numberString = `6`;
-                makeNumber2(numberString);
-                console.log(numberString);
-                num2 = parseFloat(numberString);
-                return num2;
-            case 'no7-button':
-                numberString = `7`;
-                makeNumber2(numberString);
-                console.log(numberString);
-                num2 = parseFloat(numberString);
-                return num2;
-            case 'no8-button':
-                numberString = `8`;
-                makeNumber2(numberString);
-                console.log(numberString);
-                num2 = parseFloat(numberString);
-                return num2;
-            case 'no9-button':
-                numberString = `9`;
-                makeNumber2(numberString);
-                console.log(numberString);
-                num2 = parseFloat(numberString);
-                return num2;
-            case 'no0-button':
-                numberString = `0`;
-                makeNumber2(numberString);
-                console.log(numberString);
-                num2 = parseFloat(numberString);
-                return num2;
-            case 'decimal-button':
-                numberString = `.`;
-                makeNumber2(numberString);
-                console.log(numberString);
-                used2 = true;
-                break;
-            case 'c-button':
-                location.reload();
-                break;
-            default:
-        }
-    })
-}
+/*Gets button presses for second number in calculation & adds to string*/
+
 
 function getOperators(){
-
+        let x = '';
         let operatorButtons = document.getElementById('operator-buttons');
         
         operatorButtons.addEventListener('click', (event) => {
@@ -352,31 +210,27 @@ function getOperators(){
 
         switch(target.id){
             case 'plus-button':
+                x = '+'
+                operand += x;
                 console.log('+');
-                getDigits2();
-                return operand = '+';
-            case 'minus-button':
-                console.log('-');
-                getDigits2();
-                return operand = '-';
-            case 'divide-button':
-                console.log('/');
-                getDigits2();
-                return operand = '/';
-            case 'multiply-button':
-                console.log('/');
-                getDigits2();
-                return operand = '*';
-            case 'equals-button':
-                operate(num1,num2,operand);
-                break;
-            default:
+                isFirst = false;
+                used = false;
+                return operand;
         }
     })
 }
+let num1 = [];
+let num2 = [];
+let numStr1 = '';
+let numStr2 = '';
+let operand = '';
+let isFirst = true;
+let used = false;
 
-let num1 = 0;
-let num2 = 0;
-let operand = ''
 
-getDigits1();
+function startOp(){
+    getDigits();
+    getOperators();
+}
+
+startOp();
