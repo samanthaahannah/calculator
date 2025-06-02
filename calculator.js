@@ -124,25 +124,82 @@ numberButtons.appendChild(decimalButton);
 
 
 
-function operate(num1, num2, operand){
+function operate(numStr1, numStr2, operand){
     let sum = 0;
-    let number1 = 0;
-    let number2 = 0;
-    number1 = parseFloat(num1);
-    number2 = parseFloat(num2);
+    let number1 = parseFloat(numStr1);
+    let number2 = parseFloat(numStr2);
     switch (operand){
         case '-':
-            sum = number1 - number2
-            return console.log(sum);
+            if (isChained ==false){
+                sum = number1 - number2;
+                getOperators();
+                num1 = [];
+                num2 = [];
+                previousSum = sum;
+                    isChained = true;
+                return console.log(sum);
+            }else if (isChained == true){
+                sum = previousSum - number2;
+                getOperators();
+                num1 = [];
+                num2 = [];
+                previousSum = sum;
+                return console.log(sum);
+            }
         case '+':
-            sum = number1 + number2
-            return console.log(sum);
+            if (isChained ==false){
+                sum = number1 + number2;
+                getOperators();
+                num1 = [];
+                num2 = [];
+                previousSum = sum;
+                isChained = true;
+
+                return console.log(sum);
+            }else if (isChained == true){
+                sum = previousSum + number2;
+                getOperators();
+                num1 = [];
+                num2 = [];
+                previousSum = sum;
+                return console.log(sum);
+            }
         case '/': 
-            sum = number1 / number2
-            return console.log(sum);
-        default:
-            sum = number1 * number2
-            return console.log(sum);
+             if (isChained ==false){
+                sum = number1 / number2;
+                getOperators();
+                num1 = [];
+                num2 = [];
+                previousSum = sum;
+                isChained = true;
+
+                return console.log(sum);
+            }else if (isChained == true){
+                sum = previousSum / number2;
+                getOperators();
+                num1 = [];
+                num2 = [];
+                previousSum = sum;
+                return console.log(sum);
+            }
+        case '*':
+             if (isChained ==false){
+                sum = number1 * number2;
+                getOperators();
+                num1 = [];
+                num2 = [];
+                previousSum = sum;
+                isChained = true;
+
+                return console.log(sum);
+            }else if (isChained == true){
+                sum = previousSum * number2;
+                getOperators();
+                num1 = [];
+                num2 = [];
+                previousSum = sum;
+                return console.log(sum);
+            }
             
     }
 }
@@ -151,7 +208,6 @@ function operate(num1, num2, operand){
 function getDigits(){
     let x = '';
         let numbersButtons = document.getElementById('numbers-buttons');
-        let decButton = document.getElementById('decimal-button');
 
         numbersButtons.addEventListener('click', (event) => {
         let target = event.target;
@@ -162,34 +218,166 @@ function getDigits(){
                 num1.push(x);
                 numStr1 = num1.join('');
                 console.log(numStr1);
-                return num1;
+                break;
 
                 }else if(isFirst == false){
                 num2.push(x);
                 numStr2 = num2.join('');
                 console.log(numStr2);
-                return num2;
+                operate(numStr1,numStr2, operand);
+                break;
+                }
+            case 'no2-button':
+                x = `2`;
+                if (isFirst == true){
+                num1.push(x);
+                numStr1 = num1.join('');
+                console.log(numStr1);
+                break;
 
+                }else if(isFirst == false){
+                num2.push(x);
+                numStr2 = num2.join('');
+                console.log(numStr2);
+                operate(numStr1,numStr2, operand);
+                break;
+                }
+            case 'no3-button':
+                x = `3`;
+                if (isFirst == true){
+                num1.push(x);
+                numStr1 = num1.join('');
+                console.log(numStr1);
+                break;
+
+                }else if(isFirst == false){
+                num2.push(x);
+                numStr2 = num2.join('');
+                console.log(numStr2);
+                operate(numStr1,numStr2, operand);
+                break;
+                }
+            case 'no4-button':
+                x = `4`;
+                if (isFirst == true){
+                num1.push(x);
+                numStr1 = num1.join('');
+                console.log(numStr1);
+                break;
+
+                }else if(isFirst == false){
+                num2.push(x);
+                numStr2 = num2.join('');
+                console.log(numStr2);
+                operate(numStr1,numStr2, operand);
+                break;
+                }
+            case 'no5-button':
+                x = `5`;
+                if (isFirst == true){
+                num1.push(x);
+                numStr1 = num1.join('');
+                console.log(numStr1);
+                break;
+
+                }else if(isFirst == false){
+                num2.push(x);
+                numStr2 = num2.join('');
+                console.log(numStr2);
+                operate(numStr1,numStr2, operand);
+                break;
+                }
+            case 'no6-button':
+                x = `6`;
+                if (isFirst == true){
+                num1.push(x);
+                numStr1 = num1.join('');
+                console.log(numStr1);
+                break;
+
+                }else if(isFirst == false){
+                num2.push(x);
+                numStr2 = num2.join('');
+                console.log(numStr2);
+                operate(numStr1,numStr2, operand);
+                break;
+                }
+            case 'no7-button':
+                x = `7`;
+                if (isFirst == true){
+                num1.push(x);
+                numStr1 = num1.join('');
+                console.log(numStr1);
+                break;
+
+                }else if(isFirst == false){
+                num2.push(x);
+                numStr2 = num2.join('');
+                console.log(numStr2);
+                operate(numStr1,numStr2, operand);
+                break;
+                }
+            case 'no8-button':
+                x = `8`;
+                if (isFirst == true){
+                num1.push(x);
+                numStr1 = num1.join('');
+                console.log(numStr1);
+                break;
+
+                }else if(isFirst == false){
+                num2.push(x);
+                numStr2 = num2.join('');
+                console.log(numStr2);
+                operate(numStr1,numStr2, operand);
+                break;
+                }
+            case 'no9-button':
+                x = `9`;
+                if (isFirst == true){
+                num1.push(x);
+                numStr1 = num1.join('');
+                console.log(numStr1);
+                break;
+
+                }else if(isFirst == false){
+                num2.push(x);
+                numStr2 = num2.join('');
+                console.log(numStr2);
+                operate(numStr1,numStr2, operand);
+                break;
+                }
+            case 'no0-button':
+                x = `0`;
+                if (isFirst == true){
+                num1.push(x);
+                numStr1 = num1.join('');
+                console.log(numStr1);
+                break;
+
+                }else if(isFirst == false){
+                num2.push(x);
+                numStr2 = num2.join('');
+                console.log(numStr2);
+                operate(numStr1,numStr2, operand);
+                break;
                 }
             case 'decimal-button':
-                if(used == false && isFirst == true){
+                if(isFirst == true){
+                    decButton.disabled = true;
                     x = '.';
                     num1.push(x);
                     numStr1 = num1.join('');
-                    console.log(numStr1);                
+                    console.log(numStr1);
+                    break;
+                }else if (isFirst == false){
                     decButton.disabled = true;
-                    used = true;
-                return num1;
-                }else if (used == false && isFirst == false){
                     x = '.';
                     num2.push(x);
                     numStr2 = num2.join('');
-                    console.log(numStr2);                
-                    decButton.disabled = true;
-                    used = true;
-                return num2;
-                }
+                    console.log(numStr2);
                 break;
+                }
              case 'c-button':
                 location.reload();
                 break;
@@ -202,7 +390,6 @@ function getDigits(){
 
 
 function getOperators(){
-        let x = '';
         let operatorButtons = document.getElementById('operator-buttons');
         
         operatorButtons.addEventListener('click', (event) => {
@@ -210,22 +397,46 @@ function getOperators(){
 
         switch(target.id){
             case 'plus-button':
-                x = '+'
-                operand += x;
+                decButton.disabled = false;
+                operand = '+';
                 console.log('+');
                 isFirst = false;
-                used = false;
-                return operand;
+                return used = false;
+            case 'minus-button':
+                decButton.disabled = false;
+                operand = '-';
+                console.log('-');
+                isFirst = false;
+                return used = false;
+            case 'divide-button':
+                decButton.disabled = false;
+                operand = '/';
+                console.log('/');
+                isFirst = false;
+                return used = false;;
+            case 'multiply-button':
+                decButton.disabled = false;
+                operand = '*';
+                console.log('*');
+                isFirst = false;
+                return used = false;
+            case 'equals-button':
+                x = '=';
+                console.log(`=${previousSum}`);
+                break;
         }
     })
 }
 let num1 = [];
 let num2 = [];
+let previousSum = 0;
 let numStr1 = '';
 let numStr2 = '';
 let operand = '';
 let isFirst = true;
-let used = false;
+let isChained = false;
+
+let decButton = document.getElementById('decimal-button');
 
 
 function startOp(){
