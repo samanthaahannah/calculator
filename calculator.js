@@ -123,85 +123,117 @@ decimalButton.textContent = ".";
 numberButtons.appendChild(decimalButton);
 }
 
+let sum = 0;
+let roundedSum = 0;
+roundedSum = +sum.toFixed(3);
+
 /*Takes 2 number strings and calculates with operand using switch statment*/
 function operate(numStr1, numStr2, operand){
-    let sum = 0;
+    const screenP = document.getElementById('screen-p');
     let operand1 = operand;
     let number1 = parseFloat(numStr1);
     let number2 = parseFloat(numStr2);
+    let roundedSum = 0;
+    let roundedNumber1 = 0;
+    let roundedNumber2 = 0;
+    let roundedPreviousSum = 0;
     switch (operand){
         case '-':
             if (isChained ==false){
                 sum = number1 - number2;
-                getOperators();
                 num1 = [];
                 num2 = [];
                 isChained = true;
-                return console.log(sum);
+                roundedSum = +sum.toFixed(3);
+                roundedNumber1 = +number1.toFixed(3);
+                roundedNumber2 = +number2.toFixed(3);
+                console.log(`${number1}${operand1}${number2} = ${sum}`);
+                screenP.textContent = `${roundedNumber1}${operand1}${roundedNumber2} = ${roundedSum}`;
+                break;
+               /* return console.log(`${number1}${operand1}${number2} = ${sum}`);*/
             }else if (isChained == true){
-                sum = previousSum - number2;
-                getOperators();
+                previousSum = sum;9
+                sum = sum - number2;
                 num1 = [];
                 num2 = [];
-                previousSum = sum;
-                return console.log(`${number1}${operand1}${number2}`);
+                roundedSum = +sum.toFixed(3);
+                roundedNumber2 = +number2.toFixed(3);
+                roundedPreviousSum = +previousSum.toFixed(3);
+                console.log(`${previousSum}${operand1}${number2} = ${sum}`);
+                screenP.textContent = `${roundedPreviousSum}${operand1}${roundedNumber2} = ${roundedSum}`;
+                break;
             }
         case '+':
             if (isChained ==false){
                 sum = number1 + number2;
-                getOperators();
                 num1 = [];
                 num2 = [];
-                previousSum = sum;
                 isChained = true;
-
-                return console.log(sum);
+                console.log(`${number1}${operand1}${number2} = ${sum}`);
+                roundedSum = +sum.toFixed(3);
+                roundedNumber1 = +number1.toFixed(3);
+                roundedNumber2 = +number2.toFixed(3);
+                screenP.textContent = `${roundedNumber1}${operand1}${roundedNumber2} = ${roundedSum}`;
+                break;
             }else if (isChained == true){
-                sum = previousSum + number2;
-                getOperators();
+                previousSum = sum;
+                sum = sum + number2;
                 num1 = [];
                 num2 = [];
-                previousSum = sum;
-                return console.log("test");
+                roundedSum = +sum.toFixed(3);
+                roundedNumber2 = +number2.toFixed(3);
+                roundedPreviousSum = +previousSum.toFixed(3);
+                console.log(`${previousSum}${operand1}${number2} = ${sum}`);
+                screenP.textContent = `${roundedPreviousSum}${operand1}${roundedNumber2} = ${roundedSum}`;
+                break;
             }
         case '/': 
              if (isChained ==false){
                 sum = number1 / number2;
-                getOperators();
                 num1 = [];
                 num2 = [];
-                previousSum = sum;
                 isChained = true;
-
-                return console.log(sum);
+                roundedSum = +sum.toFixed(3);
+                roundedNumber1 = +number1.toFixed(3);
+                roundedNumber2 = +number2.toFixed(3);
+                console.log(`${number1}${operand1}${number2} = ${sum}`);
+                screenP.textContent = `${roundedNumber1}${operand1}${roundedNumber2} = ${roundedSum}`;
+                break;
             }else if (isChained == true){
-                sum = previousSum / number2;
-                getOperators();
+                previousSum = sum;
+                sum = sum / number2;
                 num1 = [];
                 num2 = [];
-                previousSum = sum;
-
-                return console.log(sum);
+                roundedSum = +sum.toFixed(3);
+                roundedNumber2 = +number2.toFixed(3);
+                roundedPreviousSum = +previousSum.toFixed(3);
+                console.log(`${previousSum}${operand1}${number2} = ${sum}`);
+                screenP.textContent = `${roundedPreviousSum}${operand1}${roundedNumber2} = ${roundedSum}`;
+                break;
             }
         case '*':
              if (isChained ==false){
                 sum = number1 * number2;
-                getOperators();
                 num1 = [];
                 num2 = [];
-                previousSum = sum;
                 isChained = true;
-
-
-                return console.log(sum);
+                roundedSum = +sum.toFixed(3);
+                roundedNumber1 = +number1.toFixed(3);
+                roundedNumber2 = +number2.toFixed(3);
+                console.log(`${number1}${operand1}${number2} = ${sum}`);
+                screenP.textContent = `${roundedNumber1}${operand1}${roundedNumber2} = ${roundedSum}`;
+                break;            
             }else if (isChained == true){
-                sum = previousSum * number2;
-                getOperators();
+                previousSum = sum;
+                sum = sum * number2;
                 num1 = [];
                 num2 = [];
-                previousSum = sum;
-
-                return console.log(sum);
+                roundedSum = +sum.toFixed(3);
+                roundedNumber2 = +number2.toFixed(3);
+                roundedPreviousSum = +previousSum.toFixed(3);
+                console.log(`${previousSum}${operand1}${number2} = ${sum}`);
+                screenP.textContent = `${roundedPreviousSum}${operand1}${roundedNumber2} = ${roundedSum}`;
+                break;
             }
             
     }
@@ -221,16 +253,13 @@ function getDigits(){
                 if (isFirst == true){
                 num1.push(x);
                 numStr1 = num1.join('');
-                screenArr.push(numStr1);
-                console.log(screenArr);
+                screenP.textContent = `${numStr1}`;
                 break;
 
                 }else if(isFirst == false){
                 num2.push(x);
                 numStr2 = num2.join('');
-                screenArr.push(numStr2);
-                console.log(screenArr);
-                operate(numStr1,numStr2, operand);
+                screenP.textContent = `${numStr1}${operand}${numStr2}`;
                 break;
                  }
             case 'no2-button':
@@ -238,17 +267,13 @@ function getDigits(){
                 if (isFirst == true){
                 num1.push(x);
                 numStr1 = num1.join('');
-                screenArr.push(numStr1);
-                console.log(screenArr);
+                screenP.textContent = `${numStr1}`;
                 break;
 
                 }else if(isFirst == false){
                 num2.push(x);
                 numStr2 = num2.join('');
-                                screenArr.push(numStr2);
-                                console.log(screenArr);
-
-                operate(numStr1,numStr2, operand);
+                screenP.textContent = `${numStr1}${operand}${numStr2}`;
                 break;
                 }
             case 'no3-button':
@@ -256,17 +281,13 @@ function getDigits(){
                 if (isFirst == true){
                 num1.push(x);
                 numStr1 = num1.join('');
-                screenArr.push(numStr1);
-                console.log(screenArr);
+                screenP.textContent = `${numStr1}`;
                 break;
 
                 }else if(isFirst == false){
                 num2.push(x);
                 numStr2 = num2.join('');
-                screenArr.push(numStr2);
-                console.log(screenArr);
-
-                operate(numStr1,numStr2, operand);
+                screenP.textContent = `${numStr1}${operand}${numStr2}`;
                 break;
                 }
             case 'no4-button':
@@ -274,135 +295,115 @@ function getDigits(){
                 if (isFirst == true){
                 num1.push(x);
                 numStr1 = num1.join('');
-                console.log(screenArr);
-                screenArr.push(numStr1);
+                screenP.textContent = `${numStr1}`;
                 break;
 
                 }else if(isFirst == false){
                 num2.push(x);
                 numStr2 = num2.join('');
-                screenArr.push(numStr2);
-                console.log(screenArr);
-                operate(numStr1,numStr2, operand);
+                screenP.textContent = `${numStr1}${operand}${numStr2}`;
                 break;
                  }
             case 'no5-button':
                 x = `5`;
-                if (isFirst == true && isChained == false){
+                if (isFirst == true){
                 num1.push(x);
                 numStr1 = num1.join('');
-                screenArr.push(numStr1);
-                console.log(screenArr);
+                screenP.textContent = `${numStr1}`;
                 break;
 
-                }else if(isFirst == false && isChained == false){
+                }else if(isFirst == false){
                 num2.push(x);
                 numStr2 = num2.join('');
-                screenArr.push(numStr2);
-                console.log(screenArr);
-                operate(numStr1,numStr2, operand);
+                screenP.textContent = `${numStr1}${operand}${numStr2}`;
                 break;
                  }
             case 'no6-button':
                 x = `6`;
-                if (isFirst == true && isChained == false){
+                if (isFirst == true){
                 num1.push(x);
                 numStr1 = num1.join('');
-                screenArr.push(numStr1);
-                console.log(screenArr);
+                screenP.textContent = `${numStr1}`;
                 break;
 
-                }else if(isFirst == false && isChained == false){
+                }else if(isFirst == false){
                 num2.push(x);
                 numStr2 = num2.join('');
-                screenArr.push(numStr2);
-                console.log(screenArr);
-                operate(numStr1,numStr2, operand);
+                screenP.textContent = `${numStr1}${operand}${numStr2}`;
                 break;
                 }
             case 'no7-button':
                 x = `7`;
-                if (isFirst == true && isChained == false){
+                if (isFirst == true){
                 num1.push(x);
                 numStr1 = num1.join('');
-                screenArr.push(numStr1);
-                console.log(screenArr);
+                screenP.textContent = `${numStr1}`;
                 break;
 
                 }else if(isFirst == false && isChained == false){
                 num2.push(x);
                 numStr2 = num2.join('');
-                screenArr.push(numStr2);
-                console.log(screenArr);
+                screenP.textContent = `${numStr1}${operand}${numStr2}`;
                 break;
                 }
+                
             case 'no8-button':
                 x = `8`;
-                if (isFirst == true && isChained == false){
+                if (isFirst == true){
                 num1.push(x);
                 numStr1 = num1.join('');
-                screenArr.push(numStr1);
-                console.log(screenArr);
+                screenP.textContent = `${numStr1}`;
                 break;
 
-                }else if(isFirst == false && isChained == false){
+                }else if(isFirst == false){
                 num2.push(x);
                 numStr2 = num2.join('');
-                screenArr.push(numStr2);
-                totalString = screenArr.join('');
-                console.log(totalString);
-                operate(numStr1,numStr2, operand);
+                screenP.textContent = `${numStr1}${operand}${numStr2}`;
                 break;
                 }
             case 'no9-button':
                 x = `9`;
-                if (isFirst == true && isChained == false){
+                if (isFirst == true){
                 num1.push(x);
                 numStr1 = num1.join('');
-                screenArr.push(numStr1);
-                console.log(screenArr);
+                screenP.textContent = `${numStr1}`;
                 break;
 
-                }else if(isFirst == false && isChained == false){
+                }else if(isFirst == false){
                 num2.push(x);
                 numStr2 = num2.join('');
-                screenArr.push(numStr2);
-                console.log(screenArr);
-                operate(numStr1,numStr2, operand);
+                screenP.textContent = `${numStr1}${operand}${numStr2}`;
                 break;
                 }
             case 'no0-button':
                 x = `0`;
-                if (isFirst == true && isChained == false){
+                if (isFirst == true){
                 num1.push(x);
                 numStr1 = num1.join('');
-                screenArr.push(numStr1);
+                screenP.textContent = `${numStr1}`;
                 break;
 
-                }else if(isFirst == false && isChained == false){
+                }else if(isFirst == false){
                 num2.push(x);
                 numStr2 = num2.join('');
-                screenArr.push(numStr2);
-                console.log(screenArr);
-                operate(numStr1,numStr2, operand);
+                screenP.textContent = `${numStr1}${operand}${numStr2}`;
                 break;
+                
                 }
             case 'decimal-button':
-                if(isFirst == true && isChained == false){
+                if(isFirst == true){
                     decButton.disabled = true;
                     x = '.';
                     num1.push(x);
-                    screenArr.push(numStr1);
-                    console.log(screenArr);
                     numStr1 = num1.join('');
+                    screenP.textContent = `${numStr1}`;
                     break;
-                }else if (isFirst == false && isChained == false){
+                }else if (isFirst == false){
                     decButton.disabled = true;
                     x = '.';
                     num2.push(x);
-                    screenArr.push(numStr2);
-                    console.log(screenArr);
                     numStr2 = num2.join('');
+                    screenP.textContent = `${numStr1}${operand}${numStr2}`;
                 break;
                 }
              case 'c-button':
@@ -425,39 +426,36 @@ function getOperators(){
             case 'plus-button':
                 decButton.disabled = false;
                 operand = '+';
-                screenArr.push(operand);
-                console.log(screenArr);
                 isFirst = false;
+                screenP.textContent = `${numStr1}+`;
                 break;
             case 'minus-button':
                 decButton.disabled = false;
                 operand = '-';
                 isFirst = false;
-                screenArr.push(operand);
-                console.log(screenArr);
+                screenP.textContent = `${numStr1}-`;
                 break;
             case 'divide-button':
                 decButton.disabled = false;
                 operand = '/';
                 isFirst = false;
-                screenArr.push(operand);
-                console.log(screenArr);
+                screenP.textContent = `${numStr1}/`;
                 break;
             case 'multiply-button':
                 decButton.disabled = false;
                 operand = '*';
                 isFirst = false;
-                screenArr.push(operand);
-                console.log(screenArr);
+                screenP.textContent = `${numStr1}*`;
                 break;
             case 'equals-button':
+                operate(numStr1, numStr2, operand);
                 operand = '=';
-                screenArr.push(operand);
-                console.log(screenArr);
                 break;
         }
     })
 }
+
+
 /*Arrays holding digits for first number and second number*/
 let num1 = [];
 let num2 = [];
@@ -465,9 +463,9 @@ let num2 = [];
 /*Strings created from number arrays*/
 let numStr1 = '';
 let numStr2 = '';
+const screenP = document.getElementById('screen-p')
 
-let totalString = '';
-let screenArr = [];
+
 
 /*string to hold operand +, -, *, /, or =*/
 let operand = '';
