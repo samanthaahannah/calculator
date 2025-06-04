@@ -169,67 +169,42 @@ function getOperator(){
         switch (target.id){
         case 'minus-button':
             operand = '-'
-            if (isChain == false){
-                fullExpr.push(numStr1);
-            } else if(isChain == true){
+            if(isChain == true){
                 num2 = [];
-                fullExpr = [];
-                fullExpr.push(+resultRounded);
                 eqButton.disabled = false;
             }
-            fullExpr.push(operand);
-            fullStr = fullExpr.join('');
-            screenPara.textContent = fullStr;
+            screenPara.textContent = operand;
             isFirst = false;
             enableDecimal();
             break;
         case 'plus-button':
             operand = '+'
-            if (isChain == false){
-                fullExpr.push(numStr1);
-            } else if(isChain == true){
+            if(isChain == true){
                 num2 = [];
-                fullExpr = [];
-                fullExpr.push(+resultRounded);
                 eqButton.disabled = false;
             }
-            fullExpr.push(operand);
-            fullStr = fullExpr.join('');
-            screenPara.textContent = fullStr;
+            screenPara.textContent = operand;
             isFirst = false;
             enableDecimal();
             break;
         case 'divide-button': 
             operand = '/'
-            if (isChain == false){
-                fullExpr.push(numStr1);
-            } else if(isChain == true){
+            if(isChain == true){
                 num2 = [];
-                fullExpr = [];
-                fullExpr.push(+resultRounded);
                 eqButton.disabled = false;
             }
-            fullExpr.push(operand);
-            fullStr = fullExpr.join('');
-            screenPara.textContent = fullStr;
+            screenPara.textContent = operand;
             isFirst = false;
             enableDecimal();
             break;
         case 'multiply-button':
             operand = '*'
-            if (isChain == false){
-                fullExpr.push(numStr1);
-            } else if(isChain == true){
-                fullExpr = [];
-                fullExpr.push(+resultRounded);
+            if(isChain == true){
+                num2 = [];
                 eqButton.disabled = false;
             }
-            fullExpr.push(operand);
-            fullStr = fullExpr.join('');
-            screenPara.textContent = fullStr;
-            console.log(fullStr);
+            screenPara.textContent = operand;
             isFirst = false;
-            console.log(totalResult);
             enableDecimal();
             break;
         case 'equals-button':
@@ -282,17 +257,35 @@ function getDigits(){
                 console.log(num2)
                 num2.push(i);
                 numStr2 = num2.join('');
-                screenPara.textContent = `${+numStr1}${operand}${numStr2}`;
+                screenPara.textContent = `${numStr2}`;
             }
             else if (isFirst == false && isChain == true){
                 console.log(num2)
                 num2.push(i);
                 numStr2 = num2.join('');
-                screenPara.textContent = `${+resultRounded}${operand}${numStr2}`;
+                screenPara.textContent = `${numStr2}`;
             }
                  
     })
     }
+
+     delButton.addEventListener("click", (event) => {
+
+        if(isFirst == true){
+            num1.pop();
+            console.log(num1);
+            numStr1 = num1.join('');
+            console.log(numStr1);
+            screenPara.textContent = `${numStr1}`;
+        } 
+        else if(isFirst == false){
+            num1.pop();
+            console.log(num2);
+            numStr2 = num1.join('');
+            console.log(numStr2);
+            screenPara.textContent = `${numStr2}`;
+        }
+    });
     
     decButton.addEventListener("click",(event) => {
     
@@ -308,7 +301,7 @@ function getDigits(){
             decButton.disabled = true;
             numStr2 = num2.join('');
             console.log(isChain);
-            screenPara.textContent = `${+numStr1}${operand}${numStr2}`;
+            screenPara.textContent = `${numStr2}`;
             
         }else if(isFirst == false && isChain == true){
             num2.push('.');
@@ -316,7 +309,7 @@ function getDigits(){
             console.log('added');
             decButton.disabled = true;
             numStr2 = num2.join('');
-            screenPara.textContent = `${+resultRounded}${operand}${numStr2}`;
+            screenPara.textContent = `${numStr2}`;
             
         }
     });
