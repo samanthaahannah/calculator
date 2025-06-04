@@ -21,114 +21,241 @@ for(let i = 0; i <=9; i++){
 
 const dButton = document.querySelector('.del-button');
 
-let cButton = document.querySelector('.c-button');
+const cButton = document.querySelector('.c-button');
 
 const decimalButton = document.querySelector('.decimal-button');
 
+/*Global variables*/
+let decButton = document.getElementById('decimal-button');
+let eqButton = document.getElementById('equals-button');
 
-function add(numStr1, numStr2){
+let clearButton = document.getElementById('c-button');
+let delButton = document.getElementById('d-button');
+let screenPara = document.getElementById('screen-p')
+
+let num1 = [];
+let num2 = [];
+let fullExpr = [];
+
+let numStr1 = '';
+let numStr2 = '';
+let fullStr = '';
+
+let isFirst = true;
+let operand = '';
+let result = 0;
+let resultRounded = 0;
+let totalResult = 0;
+let isChain = false;
+
+let isEqualsEnabled = true;
+
+console.log(isChain);
+
+function deleteNumbers(){
+    /*converting resultRounded to number, then to string again
+    gets rid of trailing zeros*/
+   
+    let resultNum = +resultRounded;
+    let restring = resultNum.toString();
+
+    console.log(restring);
+
+    let numArray = restring.split('');
+
+    console.log(numArray)
+
+    delButton.addEventListener("click", (event) => {
+        numArray.pop();
+        console.log(typeof numArray);
+        console.log(numArray);
+        resultRounded = numArray.join('');
+        console.log(resultRounded);
+    })
+
+}
+
+/*arithmatic functions*/{
+
+function add(numberString1, numberString2){
     let number1 = 0;
     let number2 = 0;
-    number1 = parseFloat(numStr1)
-    number2 = parseFloat(numStr2)
 
+    number1 = parseFloat(numberString1)
+    number2 = parseFloat(numberString2)
+
+    if (isChain == false){
     result = number1 + number2;
-    resultRounded = result.toFixed(2);
-    screenP.textContent = resultRounded;
+    totalResult += result;
+    resultRounded = totalResult.toFixed(2);
+    screenPara.textContent = +resultRounded;
+    
+    }else if (isChain == true){
+        totalResult += number2;
+        resultRounded = totalResult.toFixed(2);
+        screenPara.textContent = +resultRounded;
+    }
+
 }
 
-function subtract(numStr1, numStr2){
+function subtract(numberString1, numberString2){
     let number1 = 0;
     let number2 = 0;
-    number1 = parseFloat(numStr1)
-    number2 = parseFloat(numStr2)
 
+    number1 = parseFloat(numberString1)
+    number2 = parseFloat(numberString2)
+
+    if (isChain == false){
     result = number1 - number2;
+    totalResult -= result;
     resultRounded = result.toFixed(2);
-    screenP.textContent = resultRounded;
+    screenPara.textContent = +resultRounded;
+
+    }else if (isChain == true){
+        totalResult -= number2;
+        resultRounded = totalResult.toFixed(2);
+        screenPara.textContent = +resultRounded;
+    }
 }
 
-function multiply(numStr1, numStr2){
+function multiply(numberString1, numberString2){
     let number1 = 0;
     let number2 = 0;
-    number1 = parseFloat(numStr1)
-    number2 = parseFloat(numStr2)
 
+    number1 = parseFloat(numberString1)
+    number2 = parseFloat(numberString2)
+
+    if (isChain == false){
     result = number1 * number2;
+    totalResult += result;
     resultRounded = result.toFixed(2);
-    screenP.textContent = resultRounded;
+    screenPara.textContent = +resultRounded;
+
+    }else if (isChain == true){
+        totalResult *= number2;
+        resultRounded = totalResult.toFixed(2);
+        screenPara.textContent = +resultRounded;
+        console.log(totalResult);
+    }
 }
 
-function divide(numStr1, numStr2){
+function divide(numberString1, numberString2){
     let number1 = 0;
     let number2 = 0;
-    number1 = parseFloat(numStr1)
-    number2 = parseFloat(numStr2)
 
+    number1 = parseFloat(numberString1)
+    number2 = parseFloat(numberString2)
+
+    if (isChain == false){
     result = number1 / number2;
+    totalResult += result;
     resultRounded = result.toFixed(2);
-    screenP.textContent = resultRounded;
+    screenPara.textContent = +resultRounded;
+    }else if (isChain == true){
+        totalResult = totalResult / number2;
+        resultRounded = totalResult.toFixed(2);
+        screenPara.textContent = +resultRounded;
+    }
+}
 }
 
 /*Takes 2 number strings and calculates with operand using switch statment*/
-function getOperator(operand){
+function getOperator(){
+    
     let operators = document.querySelector('#operator-buttons');
-
     operators.addEventListener("click",(event) => {
         let target = event.target;
 
         switch (target.id){
         case 'minus-button':
             operand = '-'
-            fullExpr.push(numStr1);
+            if (isChain == false){
+                fullExpr.push(numStr1);
+            } else if(isChain == true){
+                num2 = [];
+                fullExpr = [];
+                fullExpr.push(+resultRounded);
+                eqButton.disabled = false;
+            }
             fullExpr.push(operand);
             fullStr = fullExpr.join('');
-            screenP.textContent = fullStr;
+            screenPara.textContent = fullStr;
             isFirst = false;
             enableDecimal();
             break;
         case 'plus-button':
             operand = '+'
-            fullExpr.push(numStr1);
+            if (isChain == false){
+                fullExpr.push(numStr1);
+            } else if(isChain == true){
+                num2 = [];
+                fullExpr = [];
+                fullExpr.push(+resultRounded);
+                eqButton.disabled = false;
+            }
             fullExpr.push(operand);
             fullStr = fullExpr.join('');
-            screenP.textContent = fullStr;
+            screenPara.textContent = fullStr;
             isFirst = false;
             enableDecimal();
             break;
         case 'divide-button': 
             operand = '/'
-            fullExpr.push(numStr1);
+            if (isChain == false){
+                fullExpr.push(numStr1);
+            } else if(isChain == true){
+                num2 = [];
+                fullExpr = [];
+                fullExpr.push(+resultRounded);
+                eqButton.disabled = false;
+            }
             fullExpr.push(operand);
             fullStr = fullExpr.join('');
-            screenP.textContent = fullStr;
+            screenPara.textContent = fullStr;
             isFirst = false;
             enableDecimal();
             break;
         case 'multiply-button':
             operand = '*'
-            fullExpr.push(numStr1);
+            if (isChain == false){
+                fullExpr.push(numStr1);
+            } else if(isChain == true){
+                fullExpr = [];
+                fullExpr.push(+resultRounded);
+                eqButton.disabled = false;
+            }
             fullExpr.push(operand);
             fullStr = fullExpr.join('');
-            screenP.textContent = fullStr;
+            screenPara.textContent = fullStr;
+            console.log(fullStr);
             isFirst = false;
+            console.log(totalResult);
             enableDecimal();
             break;
         case 'equals-button':
-            if (operand = '+'){
-                add(numStr1,numStr2);
-                console.log(operand);
-            } 
-            else if(operand = '-'){
-                subtract(numStr1,numStr2)
-            }
-            else if(operand = '/'){
-                divide(numStr1,numStr2)}
-            else if(operand = '*')
-                {multiply(numStr1.numStr2)
+            if (isEqualsEnabled == true){
+                eqButton.disabled = true;
+                if (operand == '+'){
+                    add(numStr1,numStr2);
+                    isChain = true;
+                } 
+                else if(operand == '-'){
+                    subtract(numStr1,numStr2);
+                    isChain = true;
                 }
-            break;
-
+                else if(operand == '/'){
+                    divide(numStr1,numStr2);
+                    isChain = true;
+    }
+                else if(operand == '*')
+                    {
+                    multiply(numStr1,numStr2);
+                    isChain = true;
+                    }
+                break;
+            }else if (isEqualsEnabled == false){
+                eButton.disabled = false;
+            }
     }
     })
 }
@@ -141,7 +268,6 @@ function enableDecimal ()
 /*Creates two sets numbers (determined by whether isFirst is true or not) by
 pushing string to two arrays (num1 & num2) and then joining into another string (numString1 & numString2)*/
 function getDigits(){
-    let used = false;
     let numberButtons = [];
     for (let i = 0; i <=9; i++){
         numberButtons[i] = document.getElementById('no'+i+'-button');
@@ -150,67 +276,55 @@ function getDigits(){
             if (isFirst == true){
             num1.push(i);
             numStr1 = num1.join('');
-            screenP.textContent = numStr1;
+            screenPara.textContent = numStr1;
             }
-            else if (isFirst == false){
+             else if (isFirst == false && isChain == false){
+                console.log(num2)
                 num2.push(i);
                 numStr2 = num2.join('');
-                screenP.textContent = fullStr+numStr2;
+                screenPara.textContent = `${+numStr1}${operand}${numStr2}`;
+            }
+            else if (isFirst == false && isChain == true){
+                console.log(num2)
+                num2.push(i);
+                numStr2 = num2.join('');
+                screenPara.textContent = `${+resultRounded}${operand}${numStr2}`;
             }
                  
     })
     }
+    
     decButton.addEventListener("click",(event) => {
     
         if(isFirst == true){
             num1.push('.');
             decButton.disabled = true;
             numStr1 = num1.join('');
-            screenP.textContent = numStr1;
+            screenPara.textContent = numStr1;
         } 
-        else if(isFirst == false){
+        else if(isFirst == false && isChain == false){
             num2.push('.');
+            console.log(num2);
             decButton.disabled = true;
             numStr2 = num2.join('');
-            screenP.textContent = fullStr+numStr2;
+            console.log(isChain);
+            screenPara.textContent = `${+numStr1}${operand}${numStr2}`;
+            
+        }else if(isFirst == false && isChain == true){
+            num2.push('.');
+            console.log(num2);
+            console.log('added');
+            decButton.disabled = true;
+            numStr2 = num2.join('');
+            screenPara.textContent = `${+resultRounded}${operand}${numStr2}`;
+            
         }
     });
-    cButton.addEventListener("click",(event) => {
+    clearButton.addEventListener("click",(event) => {
         location.reload();
     });
     getOperator();
-
-}
-/*Arrays holding digits for first number and second number*/
-let num1 = [];
-let num2 = [];
-let fullExpr = [];
-/*Strings created from number arrays*/
-let numStr1 = '';
-let numStr2 = '';
-let fullStr = '';
-screenP = document.getElementById('screen-p')
-
-
-/*string to hold operand +, -, *, /, or =*/
-let operand = '';
-
-/*For getDigits function to tell switch 
-statement which number array to add digts into*/
-let isFirst = true;
-
-/*For operate function to tell switch statement 
-whether sum is chained from a previous calculation*/
-let isChained = false;
-
-/*The deciml button*/
-let decButton = document.getElementById('decimal-button');
-
-/*The clear page button*/
-cButton = document.getElementById('c-button');
-
-function startOp(){
-    getDigits();
+    
 }
 
-startOp();
+getDigits();

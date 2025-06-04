@@ -32,6 +32,7 @@ body{
     vertical-align: middle;
     align-items: center;
     vertical-align: middle;
+    overflow: hidden;
 
 }
 
@@ -49,6 +50,7 @@ body{
     align-items: center;
     vertical-align: middle;
     padding-right: 20px;
+    overflow: hidden;
 }
 
 #buttons-wrapper{
