@@ -35,21 +35,20 @@ let screenPara = document.getElementById('screen-p')
 
 let num1 = [];
 let num2 = [];
-let fullExpr = [];
 
 let numStr1 = '';
 let numStr2 = '';
-let fullStr = '';
+let operand = '';
 
 let isFirst = true;
-let operand = '';
+
 let result = 0;
 let resultRounded = 0;
 let totalResult = 0;
 let isChain = false;
 
 let isEqualsEnabled = true;
-let equaled = false;
+let isEqualed = false;
 
 function deleteNumbers(){
     /*converting resultRounded to number, then to string again
@@ -69,99 +68,52 @@ function deleteNumbers(){
 
 /*arithmatic functions*/{
 
-function add(numberString1, numberString2){
-    let number1 = 0;
-    let number2 = 0;
-
-    number1 = parseFloat(numberString1)
-    number2 = parseFloat(numberString2)
-
-    if (isChain == false){
-    result = number1 + number2;
-    totalResult += result;
-    resultRounded = totalResult.toFixed(2);
-    screenPara.textContent = +resultRounded;
-     isChain = true;
-    
-    }else if (isChain == true){
-        totalResult += number2;
-        console.log('adding');
-        resultRounded = totalResult.toFixed(2);
-        screenPara.textContent = +resultRounded;
-    }
-
+function add(number1, number2){
+    let convNum1 = parseFloat(number1);
+    let convNum2 = parseFloat(number2);
+    let sum = 0;
+    let restring = '';
+    sum = convNum1 + convNum2;
+    restring = sum.toString();
+    screenP.textContent = restring;
+    return numStr1 = restring;
 }
 
-function subtract(numberString1, numberString2){
-    let number1 = 0;
-    let number2 = 0;
-
-    number1 = parseFloat(numberString1)
-    number2 = parseFloat(numberString2)
-
-    if (isChain == false){
-    result = number1 - number2;
-    totalResult += result;
-    resultRounded = totalResult.toFixed(2);
-    screenPara.textContent = +resultRounded;
-     isChain = true;
-    
-    }else if (isChain == true){
-        totalResult -= number2;
-        console.log('adding');
-        resultRounded = totalResult.toFixed(2);
-        screenPara.textContent = +resultRounded;
-    }
+function subtract(number1, number2){
+    let convNum1 = parseFloat(number1);
+    let convNum2 = parseFloat(number2);
+    let sum = 0;
+    let restring = '';
+    sum = convNum1 - convNum2;
+    restring = sum.toString();
+    screenP.textContent = restring;
+    return numStr1 = restring;
 }
 
-function multiply(numberString1, numberString2){
-    let number1 = 0;
-    let number2 = 0;
-
-    number1 = parseFloat(numberString1)
-    number2 = parseFloat(numberString2)
-
-    if (isChain == false){
-    result = number1 * number2;
-    totalResult += result;
-    resultRounded = totalResult.toFixed(2);
-    screenPara.textContent = +resultRounded;
-     isChain = true;
-    
-    }else if (isChain == true){
-        totalResult *= number2;
-        console.log('adding');
-        resultRounded = totalResult.toFixed(2);
-        screenPara.textContent = +resultRounded;
-    }
+function multiply(number1, number2){
+    let convNum1 = parseFloat(number1);
+    let convNum2 = parseFloat(number2);
+    let sum = 0;
+    let restring = '';
+    sum = convNum1 * convNum2;
+    restring = sum.toString();
+    screenP.textContent = restring;
+    return numStr1 = restring;
 }
 
-function divide(numberString1, numberString2){
-    let number1 = 0;
-    let number2 = 0;
-
-    number1 = parseFloat(numberString1)
-    number2 = parseFloat(numberString2)
-
-    if (isChain == false){
-    result = number1 / number2;
-    totalResult += result;
-    resultRounded = totalResult.toFixed(2);
-    screenPara.textContent = +resultRounded;
-     isChain = true;
-    
-    }else if (isChain == true){
-        totalResult = totalResult / number2;
-        console.log('adding');
-        resultRounded = totalResult.toFixed(2);
-        screenPara.textContent = +resultRounded;
-    }
-}
+function divide(number1, number2){
+    let convNum1 = parseFloat(number1);
+    let convNum2 = parseFloat(number2);
+    let sum = 0;
+    let restring = '';
+    sum = convNum1 / convNum2;
+    restring = sum.toString();
+    screenP.textContent = restring;
+    return numStr1 = restring;
 }
 
 /*Takes 2 number strings and calculates with operand using switch statment*/
-function getOperator(){
-    
+
     let operators = document.querySelector('#operator-buttons');
     operators.addEventListener("click",(event) => {
         let target = event.target;
@@ -169,88 +121,70 @@ function getOperator(){
         switch (target.id){
         case 'plus-button':
             operand = '+';
-            if(!num2.length == 0 && equaled == false){
-                screenPara.textContent = `${numStr1}${operand}${numStr2}`;
-                screenPara.textContent = `${operand}${resultRounded}`;
-                console.log('fired');
-                add(numStr1,numStr2);
+            console.log('fired');
+            if(isFirst==false){
+                num2 = [];
             }
-            eqButton.disabled = false;
-            equaled = false;
+            if (isFirst == false && isEqualed == false){
+                add(numStr1, numStr2);
+            }
             isFirst = false;
-            num2 = [];
-            enableDecimal();
             break;
         case 'minus-button':
-             operand = '-';
-            if(!num2.length == 0 && equaled == false){
-                screenPara.textContent = `${numStr1}${operand}${numStr2}`;
-                screenPara.textContent = `${operand}${resultRounded}`;
-                console.log('fired');
-                add(numStr1,numStr2);
+            operand = '-';
+            console.log('fired');
+            if(isFirst==false){
+                num2 = [];
             }
-            eqButton.disabled = false;
-            equaled = false;
+            if (isFirst == false && isEqualed == false){
+                subtract(numStr1, numStr2);
+            }
             isFirst = false;
-            num2 = [];
-            enableDecimal();
             break;
-        case 'divide-button': 
+        case 'divide-button':
             operand = '/';
-            if(!num2.length == 0 && equaled == false){
-                screenPara.textContent = `${numStr1}${operand}${numStr2}`;
-                screenPara.textContent = `${operand}${resultRounded}`;
-                console.log('fired');
-                add(numStr1,numStr2);
+            console.log('fired');
+            if(isFirst==false){
+                num2 = [];
             }
-            eqButton.disabled = false;
-            equaled = false;
+            if (isFirst == false && isEqualed == false){
+                divide(numStr1, numStr2);
+            }
             isFirst = false;
-            num2 = [];
-            enableDecimal();
             break;
         case 'multiply-button':
             operand = '*';
-            if(!num2.length == 0 && equaled == false){
-                screenPara.textContent = `${numStr1}${operand}${numStr2}`;
-                screenPara.textContent = `${operand}${resultRounded}`;
-                console.log('fired');
-                add(numStr1,numStr2);
+            console.log('fired');
+            if(isFirst==false){
+                num2 = [];
             }
-            eqButton.disabled = false;
-            equaled = false;
+            if (isFirst == false && isEqualed == false){
+                multiply(numStr1, numStr2);
+            }
             isFirst = false;
-            num2 = [];
-            enableDecimal();
             break;
         case 'equals-button':
-            equaled = true;
-            if (isEqualsEnabled == true){
-                eqButton.disabled = true;
-                if (operand == '+'){
-                    add(numStr1,numStr2);
-                    isChain = true;
-                } 
-                else if(operand == '-'){
-                    subtract(numStr1,numStr2);
-                    isChain = true;
+            console.log(numStr1)
+            console.log(numStr2)
+            if(numStr1 != undefined && numStr2 != undefined && screenP.textContent != ''){
+                screenP.textContent = `${numStr1}${operand}${numStr2}`;
+                console.log(`${numStr1}${operand}${numStr2}`);
+                isEqualed = true;
+                if(operand == '+'){
+                    add(numStr1, numStr2);
                 }
-                else if(operand == '/'){
-                    divide(numStr1,numStr2);
-                    isChain = true;
-    }
-                else if(operand == '*')
-                    {
-                    multiply(numStr1,numStr2);
-                    isChain = true;
-                    }
-                break;
-            }else if (isEqualsEnabled == false){
-                eqButton.disabled = false;
+                else if(operand == '-'){
+                    subtract(numStr1, numStr2);
+                }
+                else if(operand == '*'){
+                    multiply(numStr1, numStr2);
+                }else if(operand == '/'){
+                    divide(numStr1, numStr2);
+                }
             }
     }
     })
-}
+
 
 function enableDecimal ()
 {
@@ -268,22 +202,18 @@ function getDigits(){
             if (isFirst == true){
             num1.push(i);
             numStr1 = num1.join('');
-            screenPara.textContent = numStr1;
+            screenPara.textContent = `${numStr1}`;
+            console.log(`${numStr1}`);
             }
-             else if (isFirst == false && isChain == false){
+            else if (isFirst == false){
                 num2.push(i);
-                numStr2 = num2.join('');
-                screenPara.textContent = `${+numStr1}${operand}${+numStr2}`;
-                console.log(`${numStr1}${operand}${numStr2}`);
-            }
-            else if (isFirst == false && isChain == true){
                 console.log(num2);
-                num2.push(i);
                 numStr2 = num2.join('');
-                console.log(num2)
-                screenPara.textContent = `${+resultRounded}${operand}${+numStr2}`;
+                console.log(numStr2);
+                screenPara.textContent = `${numStr2}`;
+                console.log(`${numStr2}`);
+                isEqualed = false;
             }
-                 
     })
     }
 
@@ -311,53 +241,29 @@ function getDigits(){
             }
             numStr2 = num2.join('');
             screenPara.textContent = `${numStr2}`;
-        }else if(isFirst == false && isChain == true){
-            num2.pop();
-            if (num2.includes('.') == true){
-                decButton.disabled = true;
-            }else{
-                decButton.disabled = false;
-            }
-            numStr2 = num2.join('');
-            screenPara.textContent = `${numStr2}`;
         }
         
     });
-
-     
 
     decButton.addEventListener("click",(event) => {
     
         if(isFirst == true){
             num1.push('.');
             numStr1 = num1.join('');
-            screenPara.textContent = numStr1;
+            screenPara.textContent = `${numStr1}`;
         } 
-        else if(isFirst == false && isChain == false){
+        else if(isFirst == false){
             num2.push('.');
-             if (num1.includes('.') == true){
-                decButton.disabled = true;
-            }else{decButton.disabled = false}
-            decButton.disabled = true;
             numStr2 = num2.join('');
-            screenPara.textContent = `${numStr1}${operand}${numStr2}`;
-            
-        }else if(isFirst == false && isChain == true){
-            num2.push('.');
-             if (num1.includes('.') == true){
-                decButton.disabled = true;
-            }else{decButton.disabled = false}
-            decButton.disabled = true;
-            numStr2 = num2.join('');
-            screenPara.textContent = `${+resultRounded}${operand}${numStr2}`;
+            screenPara.textContent = `${numStr2}`;
             
         }
     });
     clearButton.addEventListener("click",(event) => {
         location.reload();
     });
-    getOperator();
-    
+    return numStr1, numStr2;
 }
 
 getDigits();
+}
