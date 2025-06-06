@@ -76,7 +76,9 @@ function add(number1, number2){
     sum = convNum1 + convNum2;
     restring = sum.toString();
     screenP.textContent = restring;
-    return numStr1 = restring;
+    decButton.disabled = false;
+    numStr1 = restring;
+    return numStr1;
 }
 
 function subtract(number1, number2){
@@ -87,6 +89,7 @@ function subtract(number1, number2){
     sum = convNum1 - convNum2;
     restring = sum.toString();
     screenP.textContent = restring;
+    decButton.disabled = false;
     return numStr1 = restring;
 }
 
@@ -98,6 +101,7 @@ function multiply(number1, number2){
     sum = convNum1 * convNum2;
     restring = sum.toString();
     screenP.textContent = restring;
+    decButton.disabled = false;
     return numStr1 = restring;
 }
 
@@ -109,6 +113,7 @@ function divide(number1, number2){
     sum = convNum1 / convNum2;
     restring = sum.toString();
     screenP.textContent = restring;
+    decButton.disabled = false;
     return numStr1 = restring;
 }
 
@@ -121,55 +126,50 @@ function divide(number1, number2){
         switch (target.id){
         case 'plus-button':
             operand = '+';
-            console.log('fired');
-            if(isFirst==false){
-                num2 = [];
-            }
+            isEqualed = false;
+            num2 = [];
             if (isFirst == false && isEqualed == false){
                 add(numStr1, numStr2);
             }
             isFirst = false;
+            decButton.disabled = false;
             break;
         case 'minus-button':
             operand = '-';
-            console.log('fired');
-            if(isFirst==false){
-                num2 = [];
-            }
+            isEqualed = false;
+            num2 = [];
             if (isFirst == false && isEqualed == false){
-                subtract(numStr1, numStr2);
+                add(numStr1, numStr2);
             }
             isFirst = false;
+            decButton.disabled = false;
             break;
         case 'divide-button':
             operand = '/';
-            console.log('fired');
-            if(isFirst==false){
-                num2 = [];
-            }
+            isEqualed = false;
+            num2 = [];
             if (isFirst == false && isEqualed == false){
-                divide(numStr1, numStr2);
+                add(numStr1, numStr2);
             }
             isFirst = false;
+            decButton.disabled = false;
             break;
         case 'multiply-button':
             operand = '*';
-            console.log('fired');
-            if(isFirst==false){
-                num2 = [];
-            }
+            isEqualed = false;
+            num2 = [];
             if (isFirst == false && isEqualed == false){
-                multiply(numStr1, numStr2);
+                add(numStr1, numStr2);
             }
             isFirst = false;
+            decButton.disabled = false;
+            break;
             break;
         case 'equals-button':
-            console.log(numStr1)
-            console.log(numStr2)
             if(numStr1 != undefined && numStr2 != undefined && screenP.textContent != ''){
                 screenP.textContent = `${numStr1}${operand}${numStr2}`;
-                console.log(`${numStr1}${operand}${numStr2}`);
                 isEqualed = true;
+                decButton.disabled = true;
                 if(operand == '+'){
                     add(numStr1, numStr2);
                 }
@@ -195,37 +195,37 @@ function enableDecimal ()
 pushing string to two arrays (num1 & num2) and then joining into another string (numString1 & numString2)*/
 function getDigits(){
     let numberButtons = [];
+    
     for (let i = 0; i <=9; i++){
         numberButtons[i] = document.getElementById('no'+i+'-button');
         numberButtons[i].addEventListener("click", (event) => {
-
+            
             if (isFirst == true){
+            num2 = [];
+            numStr2 = '';
             num1.push(i);
             numStr1 = num1.join('');
             screenPara.textContent = `${numStr1}`;
-            console.log(`${numStr1}`);
+
             }
-            else if (isFirst == false){
+            else if (isFirst == false && isEqualed == false){
                 num2.push(i);
-                console.log(num2);
                 numStr2 = num2.join('');
-                console.log(numStr2);
                 screenPara.textContent = `${numStr2}`;
-                console.log(`${numStr2}`);
-                isEqualed = false;
+            }else if (isFirst == false && isEqualed == true){
+                let tempArray = Array.from(numStr1);
+                tempArray.push(i);
+                numStr1 = tempArray.join('');
+                screenPara.textContent = `${numStr1}`;
+                isFirst = true;
             }
+
     })
     }
 
      delButton.addEventListener("click", (event) => {
-        console.log(num1);
         if(isFirst == true){
             num1.pop();
-            if (num1.includes('.') == true){
-                decButton.disabled = true;
-            }else{
-                decButton.disabled = false;
-            }
             numStr1 = num1.join('');
             screenPara.textContent = `${numStr1}`;
             if (num1.length <= 0){
@@ -245,20 +245,25 @@ function getDigits(){
         
     });
 
+     
+
     decButton.addEventListener("click",(event) => {
     
         if(isFirst == true){
             num1.push('.');
             numStr1 = num1.join('');
             screenPara.textContent = `${numStr1}`;
+            decButton.disabled = true;
         } 
         else if(isFirst == false){
             num2.push('.');
             numStr2 = num2.join('');
             screenPara.textContent = `${numStr2}`;
-            
+            decButton.disabled = true;
         }
     });
+
+    
     clearButton.addEventListener("click",(event) => {
         location.reload();
     });
