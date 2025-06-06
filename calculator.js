@@ -73,7 +73,7 @@ function add(number1, number2){
 
     restring = sum.toString();
     roundedNum = sum.toFixed(2);
-    screenP.textContent = ~~roundedNum;
+    screenP.textContent = +roundedNum;
 
     decButton.disabled = false;
     numStr1 = restring;
@@ -91,7 +91,7 @@ function subtract(number1, number2){
 
     restring = sum.toString();
     roundedNum = sum.toFixed(2);
-    screenP.textContent = ~~roundedNum;
+    screenP.textContent = +roundedNum;
 
     decButton.disabled = false;
     numStr1 = restring;
@@ -109,7 +109,7 @@ function multiply(number1, number2){
 
     restring = sum.toString();
     roundedNum = sum.toFixed(2);
-    screenP.textContent = ~~roundedNum;
+    screenP.textContent = +roundedNum;
 
     decButton.disabled = false;
     numStr1 = restring;
@@ -127,7 +127,7 @@ function divide(number1, number2){
 
     restring = sum.toString();
     roundedNum = sum.toFixed(2);
-    screenP.textContent = ~~roundedNum;
+    screenP.textContent = +roundedNum;
 
     decButton.disabled = false;
     numStr1 = restring;
@@ -170,6 +170,9 @@ function divide(number1, number2){
             subButton.disabled = true;
             break;
         case 'divide-button':
+            if (numStr1 == '0' || numStr2 == '0'){
+                screenP.textContent = "Can't divide by 0!";
+            }else{
             if(isDivEnabled == true){
                 divButton.disabled = false;
             }
@@ -183,6 +186,7 @@ function divide(number1, number2){
             decButton.disabled = false;
             eqButton.disabled = false;
             divButton.disabled = true;
+        }
             break;
         case 'multiply-button':
             if(isMultEnabled == true){
@@ -248,12 +252,16 @@ function getDigits(){
             num1.push(i);
             console.log(num1);
             numStr1 = num1.join('');
-            screenPara.textContent = `${numStr1}`;
+            numConv1 = parseFloat(numStr1);
+                roundNum = numConv1.toFixed(2);
+                screenPara.textContent = `${+roundNum}`;
             }
             else if (isFirst == false && isEqualed == false){
                 num2.push(i);
                 numStr2 = num2.join('');
-                screenPara.textContent = `${numStr2}`;
+                numConv2 = parseFloat(numStr2);
+                roundNum = numConv2.toFixed(2);
+                screenPara.textContent = `${+roundNum}`;
                 eqButton.disabled = false;
                 addButton.disabled = false;
                 subButton.disabled = false;
@@ -265,7 +273,9 @@ function getDigits(){
                 tempArray.push(i);
                 numStr1 = tempArray.join('');
                 console.log(numStr1);
-                screenPara.textContent = `${numStr1}`;
+                numConv1 = parseFloat(numStr1);
+                roundNum = numConv1.toFixed(2);
+                screenPara.textContent = `${+roundNum}`;
                 calculated = false;
             
             }else if (isFirst == false && isEqualed == true){
@@ -277,7 +287,9 @@ function getDigits(){
                 multButton.disabled = false;
                 divButton.disabled = false;
                 eqButton.disabled = false;
-                screenPara.textContent = `${numStr1}`;
+                numConv1 = parseFloat(numStr1);
+                roundNum = numConv1.toFixed(2);
+                screenPara.textContent = `${+roundNum}`;
                 isFirst = true;
                 isEqualed = false;
             }
