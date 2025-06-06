@@ -48,10 +48,7 @@ let operand = '';
 
 let isFirst = true;
 
-let result = 0;
 let resultRounded = 0;
-let totalResult = 0;
-let isChain = false;
 
 let isEqualsEnabled = true;
 let isEqualed = false;
@@ -64,23 +61,6 @@ let isMultEnabled = true;
 let isDivEnabled = true;
 let calculated = false;
 
-
-function deleteNumbers(){
-    /*converting resultRounded to number, then to string again
-    gets rid of trailing zeros*/
-   
-    let resultNum = +resultRounded;
-    let restring = resultNum.toString();
-
-    let numArray = restring.split('');
-
-    delButton.addEventListener("click", (event) => {
-        numArray.pop();
-        resultRounded = numArray.join('');
-    })
-
-}
-
 /*arithmatic functions*/{
 
 function add(number1, number2){
@@ -88,13 +68,15 @@ function add(number1, number2){
     let convNum2 = parseFloat(number2);
     let sum = 0;
     let restring = '';
+
     sum = convNum1 + convNum2;
+
     restring = sum.toString();
-    screenP.textContent = restring;
-    console.log(restring)
+    roundedNum = sum.toFixed(2);
+    screenP.textContent = ~~roundedNum;
+
     decButton.disabled = false;
     numStr1 = restring;
-    console.log(isEqualed);
     calculated = true;
     return numStr1;
 }
@@ -104,13 +86,15 @@ function subtract(number1, number2){
     let convNum2 = parseFloat(number2);
     let sum = 0;
     let restring = '';
+
     sum = convNum1 - convNum2;
+
     restring = sum.toString();
-    screenP.textContent = restring;
-    console.log(restring)
+    roundedNum = sum.toFixed(2);
+    screenP.textContent = ~~roundedNum;
+
     decButton.disabled = false;
     numStr1 = restring;
-    console.log(isEqualed);
     calculated = true;
     return numStr1;
 }
@@ -120,13 +104,15 @@ function multiply(number1, number2){
     let convNum2 = parseFloat(number2);
     let sum = 0;
     let restring = '';
+
     sum = convNum1 * convNum2;
+
     restring = sum.toString();
-    screenP.textContent = restring;
-    console.log(restring)
+    roundedNum = sum.toFixed(2);
+    screenP.textContent = ~~roundedNum;
+
     decButton.disabled = false;
     numStr1 = restring;
-    console.log(isEqualed);
     calculated = true;
     return numStr1;
 }
@@ -136,19 +122,20 @@ function divide(number1, number2){
     let convNum2 = parseFloat(number2);
     let sum = 0;
     let restring = '';
+
     sum = convNum1 / convNum2;
+
     restring = sum.toString();
-    screenP.textContent = restring;
-    console.log(restring)
+    roundedNum = sum.toFixed(2);
+    screenP.textContent = ~~roundedNum;
+
     decButton.disabled = false;
     numStr1 = restring;
-    console.log(isEqualed);
     calculated = true;
     return numStr1;
 }
-
-/*Takes 2 number strings and calculates with operand using switch statment*/
-
+}
+/*Get operators*/{
     let operators = document.querySelector('#operator-buttons');
     operators.addEventListener("click",(event) => {
         let target = event.target;
@@ -239,7 +226,7 @@ function divide(number1, number2){
             }
     }
     })
-
+}
 
 function enableDecimal ()
 {
@@ -272,9 +259,6 @@ function getDigits(){
                 subButton.disabled = false;
                 multButton.disabled = false;
                 divButton.disabled = false;
-                console.log('fire');
-                console.log(isFirst);
-                console.log(numStr2);
             }
             else if(calculated == true){
                 let tempArray = Array.from(numStr1);
@@ -331,8 +315,6 @@ function getDigits(){
             }
     });
 
-     
-
     decButton.addEventListener("click",(event) => {
     
         if(isFirst == true && isEqualed == false){
@@ -371,4 +353,3 @@ function getDigits(){
 }
 
 getDigits();
-}
