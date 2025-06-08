@@ -42,8 +42,8 @@ let screenPara = document.getElementById('screen-p')
 let num1 = [];
 let num2 = [];
 
-let numStr1 = '';
-let numStr2 = '';
+let numStr1 = '0';
+let numStr2 = '0';
 let operand = '';
 
 let isFirst = true;
@@ -63,7 +63,7 @@ let calculated = false;
 
 /*arithmatic functions*/{
 
-function add(number1, number2){
+function add(number1 = '0', number2 = '0'){
     let convNum1 = parseFloat(number1);
     let convNum2 = parseFloat(number2);
     let sum = 0;
@@ -73,7 +73,7 @@ function add(number1, number2){
 
     restring = sum.toString();
     roundedNum = sum.toFixed(2);
-    screenP.textContent = +roundedNum;
+    screenP.textContent = ~~roundedNum;
 
     decButton.disabled = false;
     numStr1 = restring;
@@ -91,7 +91,7 @@ function subtract(number1, number2){
 
     restring = sum.toString();
     roundedNum = sum.toFixed(2);
-    screenP.textContent = +roundedNum;
+    screenP.textContent = ~~roundedNum;
 
     decButton.disabled = false;
     numStr1 = restring;
@@ -109,7 +109,7 @@ function multiply(number1, number2){
 
     restring = sum.toString();
     roundedNum = sum.toFixed(2);
-    screenP.textContent = +roundedNum;
+    screenP.textContent = ~~roundedNum;
 
     decButton.disabled = false;
     numStr1 = restring;
@@ -127,7 +127,7 @@ function divide(number1, number2){
 
     restring = sum.toString();
     roundedNum = sum.toFixed(2);
-    screenP.textContent = +roundedNum;
+    screenP.textContent = ~~roundedNum;
 
     decButton.disabled = false;
     numStr1 = restring;
@@ -146,7 +146,7 @@ function divide(number1, number2){
             isEqualed = false;
             num2 = [];
             if (isFirst == false && isEqualed == false){
-                add(numStr1, numStr2);
+                add(~~numStr1, ~~numStr2);
             }
             isOperandEnabled = false;
             isFirst = false;
@@ -156,6 +156,7 @@ function divide(number1, number2){
             subButton.disabled = true;
             addButton.disabled = true;
             divButton.disabled = true;
+            eqButton.disabled = true;
             break;
         case 'minus-button':
             if(isSubEnabled == true){
@@ -174,6 +175,7 @@ function divide(number1, number2){
             subButton.disabled = true;
             addButton.disabled = true;
             divButton.disabled = true;
+            eqButton.disabled = true;
             break;
         case 'divide-button':
             if (numStr1 == '0' || numStr2 == '0'){
@@ -195,6 +197,7 @@ function divide(number1, number2){
             subButton.disabled = true;
             addButton.disabled = true;
             divButton.disabled = true;
+            eqButton.disabled = true;
         }
             break;
         case 'multiply-button':
@@ -214,6 +217,7 @@ function divide(number1, number2){
             subButton.disabled = true;
             addButton.disabled = true;
             divButton.disabled = true;
+            eqButton.disabled = true;
             break;
         case 'equals-button':
             eqButton.disabled = true;
@@ -222,7 +226,7 @@ function divide(number1, number2){
             subButton.disabled = false;
             subButton.disabled = false;
             isFirst = true;
-            screenP.textContent = `${~~numStr1}${operand}${~~numStr2}`;
+            screenP.textContent = `${numStr1}${operand}${numStr2}`;
             isEqualed = true;
             decButton.disabled = true;
                 
