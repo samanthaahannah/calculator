@@ -152,7 +152,10 @@ function divide(number1, number2){
             isFirst = false;
             decButton.disabled = false;
             eqButton.disabled = false;
+            multButton.disabled = true;
+            subButton.disabled = true;
             addButton.disabled = true;
+            divButton.disabled = true;
             break;
         case 'minus-button':
             if(isSubEnabled == true){
@@ -167,7 +170,10 @@ function divide(number1, number2){
             isFirst = false;
             decButton.disabled = false;
             eqButton.disabled = false;
+            multButton.disabled = true;
             subButton.disabled = true;
+            addButton.disabled = true;
+            divButton.disabled = true;
             break;
         case 'divide-button':
             if (numStr1 == '0' || numStr2 == '0'){
@@ -185,6 +191,9 @@ function divide(number1, number2){
             isFirst = false;
             decButton.disabled = false;
             eqButton.disabled = false;
+            multButton.disabled = true;
+            subButton.disabled = true;
+            addButton.disabled = true;
             divButton.disabled = true;
         }
             break;
@@ -202,6 +211,9 @@ function divide(number1, number2){
             decButton.disabled = false;
             eqButton.disabled = false;
             multButton.disabled = true;
+            subButton.disabled = true;
+            addButton.disabled = true;
+            divButton.disabled = true;
             break;
         case 'equals-button':
             eqButton.disabled = true;
