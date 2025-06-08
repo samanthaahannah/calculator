@@ -223,7 +223,7 @@ function divide(number1, number2){
             subButton.disabled = false;
             isFirst = true;
             if(numStr1 != undefined && numStr2 != undefined && screenP.textContent != ''){
-                screenP.textContent = `${numStr1}${operand}${numStr2}`;
+                screenP.textContent = `${~~numStr1}${operand}${~~numStr2}`;
                 isEqualed = true;
                 decButton.disabled = true;
                 
