@@ -222,24 +222,23 @@ function divide(number1, number2){
             subButton.disabled = false;
             subButton.disabled = false;
             isFirst = true;
-            if(numStr1 != undefined && numStr2 != undefined && screenP.textContent != ''){
-                screenP.textContent = `${~~numStr1}${operand}${~~numStr2}`;
-                isEqualed = true;
-                decButton.disabled = true;
+            screenP.textContent = `${~~numStr1}${operand}${~~numStr2}`;
+            isEqualed = true;
+            decButton.disabled = true;
                 
-                if(operand == '+'){
-                    add(numStr1, numStr2);
-                }
-                else if(operand == '-'){
-                    subtract(numStr1, numStr2);
-                }
-                else if(operand == '*'){
-                    multiply(numStr1, numStr2);
-                }else if(operand == '/'){
-                    divide(numStr1, numStr2);
-                }
-                eqButton.disabled = true;
+            if(operand == '+'){
+                add(numStr1, numStr2);
             }
+            else if(operand == '-'){
+                subtract(numStr1, numStr2);
+            }
+            else if(operand == '*'){
+                multiply(numStr1, numStr2);
+            }else if(operand == '/'){
+                divide(numStr1, numStr2);
+            }
+            eqButton.disabled = true;
+            
     }
     })
 }
