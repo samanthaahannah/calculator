@@ -73,7 +73,8 @@ function add(number1 = '0', number2 = '0'){
 
     restring = sum.toString();
     roundedNum = sum.toFixed(2);
-    screenP.textContent = ~~roundedNum;
+    screenP.textContent = +roundedNum;
+    console.log(+roundNum)
 
     decButton.disabled = false;
     numStr1 = restring;
@@ -91,7 +92,7 @@ function subtract(number1, number2){
 
     restring = sum.toString();
     roundedNum = sum.toFixed(2);
-    screenP.textContent = ~~roundedNum;
+    screenP.textContent = +roundedNum;
 
     decButton.disabled = false;
     numStr1 = restring;
@@ -109,7 +110,7 @@ function multiply(number1, number2){
 
     restring = sum.toString();
     roundedNum = sum.toFixed(2);
-    screenP.textContent = ~~roundedNum;
+    screenP.textContent = +roundedNum;
 
     decButton.disabled = false;
     numStr1 = restring;
@@ -127,7 +128,7 @@ function divide(number1, number2){
 
     restring = sum.toString();
     roundedNum = sum.toFixed(2);
-    screenP.textContent = ~~roundedNum;
+    screenP.textContent = +roundedNum;
 
     decButton.disabled = false;
     numStr1 = restring;
@@ -146,7 +147,7 @@ function divide(number1, number2){
             isEqualed = false;
             num2 = [];
             if (isFirst == false && isEqualed == false){
-                add(~~numStr1, ~~numStr2);
+                add(numStr1, numStr2);
             }
             isOperandEnabled = false;
             isFirst = false;
