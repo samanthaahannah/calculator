@@ -181,6 +181,7 @@ function divide(number1, number2){
         case 'divide-button':
             if (numStr1 == '0' || numStr2 == '0'){
                 screenP.textContent = "Can't divide by 0!";
+                setTimeout(window.location.reload.bind(window.location),3000);
             }else{
             if(isDivEnabled == true){
                 divButton.disabled = false;
@@ -230,7 +231,7 @@ function divide(number1, number2){
             screenP.textContent = `${numStr1}${operand}${numStr2}`;
             isEqualed = true;
             decButton.disabled = true;
-                
+            
             if(operand == '+'){
                 add(numStr1, numStr2);
             }
@@ -240,7 +241,13 @@ function divide(number1, number2){
             else if(operand == '*'){
                 multiply(numStr1, numStr2);
             }else if(operand == '/'){
-                divide(numStr1, numStr2);
+                if (numStr1 == '0' || numStr2 == '0'){
+                    screenP.textContent = "Can't divide by 0!";
+                    eqButton.disabled = false;
+                    setTimeout(window.location.reload.bind(window.location),3000);
+                }else{
+                    divide(numStr1, numStr2);
+                }
             }
             eqButton.disabled = true;
             
